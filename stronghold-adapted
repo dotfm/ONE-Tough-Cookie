@@ -1,0 +1,45 @@
+#!/bin/bash
+# My Adpated Sec Script
+## Extrapolated from stronghold, druh, mbynes amongst several others
+
+#	Default Security Implementations
+sudo launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist
+sudo launchctl load /System/Library/LaunchAgents/com.apple.alf.useragent.plist
+
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on && \
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on && \
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on && \
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsignedapp off && \
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned off && \
+sudo pkill -HUP socketfilterfw 
+
+
+#	Reinforce && reiterate basic networking sec policies
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned off && \
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsignedapp off
+
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false 
+
+sudo defaults write /Library/Preferences/com.apple.mDNSResponder NoMulticastAdvertisments -bool true 
+
+#	Security Asssesments
+sudo spctl --master-enabled
+
+
+#	Disable Creation of extra Metadata files
+# rm -rfv "${HOME}/Library/Suggestions/*"  "${HOME}/Library/Spelling/*"  "${HOME}/Library/LanguageModeling/*"
+# chmod -R 000 "${HOME}"/Library/LanguageModeling"
+# chmod -R 000 "${HOME}"/Library/Suggestions" 
+# chmod -R 000 "${HOME}"/Library/Spelling"
+
+#	Hold down the Fort.
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+defaults write NSGlobalDomain AppleShowAllExtensions  -bool true
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud  -bool false
+
+echo 'Done, Reboot'
+
+
+#	Proceed to configure sysctl variables and packetforwarding pf.conf
+##	Separate script.
