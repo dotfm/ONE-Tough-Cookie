@@ -1,0 +1,111 @@
+!#/usr/bin/env bash
+set -o errtrace
+set -o nounset 
+set -o pipefail 
+
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitution -bool false
+defaults write NSGlobalDomain NSAutomaticDashSubstitution -bool false
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+defaults write com.apple.finder ShowStatusBar -bool true
+defaults write com.apple.finder QLEnableTextSelection -bool true
+
+defaults write com.apple.mail-shared DisableURLLoading -bool true
+
+
+defaults write com.apple.menuextra.battery ShowPercent -string "YES"
+
+defaults write com.apple.NetworkBrowser DisableAirDrop -bool true
+
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptEnabled -bool false
+defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
+defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+defaults write com.apple.Safari ShowSidebarInTopSites -bool false
+defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+defaults write com.apple.Safari UniversalSearchEnabled -bool false
+defaults write com.apple.Safari WebKitOmitPDFSupport -bool true
+defaults write com.apple.Safari WebKitJavaScriptEnabled -bool true
+
+
+defaults write com.apple.TextEdit RichText -int 0
+defaults write com.apple.TextEdit PlainTextEncoding -int 4
+defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
+
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+
+sudo defaults write /Library/Preferences/com.apple.Bluetooth ControllerPowerState -int 0
+
+sudo defaults write /Library/Preferences/com.apple.mDNSResponder NoMulticastAdvertisements -bool true
+
+sudo defaults write /Library/Preferences/com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false
+
+sudo psmet -a hibernatemode 25 &&\
+sudo pmset -a destroyfvkeyonstandby 1 
+
+sudo pmset -a womp 0 &&\
+sudo pmset -a powernap 0 &&\ 
+sudo pmset -a standby 1 &&\
+sudo pmset -a standbydelay 180 &&\
+sudo pmset -a tcpkeepalive 0 &&\
+sudo pmset -a ttyskeepawake 0 &&\
+sudo pmset -a autopoweroff 1 &&\
+sudo pmset -a autopoweroffdelay 210
+
+defaults write com.apple.Terminal SecureKeyboardEntry -int 1 &&\
+defaults write com.apple.screensaver askForPassword -int 1 && \
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+#	Default Security Implementations
+sudo launchctl load /System/Library/LaunchDaemons/com.apple.alf.agent.plist && \
+sudo launchctl load /System/Library/LaunchAgents/com.apple.alf.useragent.plist
+
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on && \
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on && \
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setstealthmode on && \
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsignedapp off && \
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned off && \
+sudo pkill -HUP socketfilterfw 
+
+
+#	Reinforce && reiterate basic networking sec policies
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned off && \
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsignedapp off
+
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.captive.control Active -bool false 
+
+sudo defaults write /Library/Preferences/com.apple.mDNSResponder NoMulticastAdvertisments -bool true  off
+sudo pkill -HUP socketfilterfw
+
+
+echo 'Done, Reboot'
+
+
+#	Proceed to configure sysctl variables and packetforwarding pf.conf
+##	Separate script.
+
+
+# cat << EOF >> /etc/sysctl.conf
+# sysctl net.inet6.ip6.use_tempaddr=0
+# sysctl net.inet.inet6.use_tempaddr=0
+# sysctl net.inet6.ip6.forwarding=0 # not a router
+# sysctl net.inet6.ip6.accept_rtadv=0 # disable RA
+# sysctl net.inet6.ip6.maxifprefixes=1 # def 16 prefix
+# sysctl net.inet6.ip6.maxifdefrouters=1 # maximum acceptable default routers via RA
+# sysctl sysctl net.inet6.ip6.use_deprecated=0 # disable ipv6 deprecated addr
+# sysctl net.inet6.ip6.hdrnestlimit=0 # limit header options 0
+# sysctl net.inet6.ip6.dad_count=0 # disable duplicate addr detection
+# sysctl net.inet6.icmp6.nodeinfo=0 # disable icmpv6 redirects not a router
+# sysctl net.inet6.ip6.maxfrags=0 # no fragmented packets default 2048
+# sysctl net.inet6.ip6.maxfragpackets=0 # default value 1024
