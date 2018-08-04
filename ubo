@@ -1,0 +1,40 @@
+no-csp-reports: * true
+* * 3p block
+* * 3p-frame block
+* * 3p-script block
+* google-analytics.com * block
+* googleadservices.com * block
+* googletagmanager.com * block
+* googletagservices.com * block
+behind-the-scene * 1p-script noop
+behind-the-scene * image noop
+behind-the-scene * inline-script noop
+* * 3p block
+* * 3p-frame block
+* translate.googleapis.com * block
+github.com avatars0.githubusercontent.com * noop
+github.com avatars1.githubusercontent.com * noop
+github.com avatars2.githubusercontent.com * noop
+github.com avatars3.githubusercontent.com * noop
+github.com camo.githubusercontent.com * noop
+github.com cloud.githubusercontent.com * noop
+github.com raw.githubusercontent.com * noop
+github.com render.githubusercontent.com * noop
+github.com s3.amazonaws.com * noop
+mozilla.org mozilla.net * noop
+mozilla.org mozillademos.org * noop
+superuser.com sstatic.net * noop
+
+
+wikipedia.org wikimedia.org * noop
+
+www.youtube.com content.googleapis.com * block
+
+www.youtube.com google.com * block
+www.youtube.com googleusercontent.com * block
+www.youtube.com googlevideo.com * block
+www.youtube.com gstatic.com * block
+www.youtube.com plus.googleapis.com * blocl
+www.youtube.com youtube-nocookie.com * block
+www.youtube.com ytimg.com * noop
+
