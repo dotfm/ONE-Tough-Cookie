@@ -1,13 +1,11 @@
-##  One-Tough-Cookie
-# freshly installed macOS systems with slightly hardened defaults
-#
-# (Supposedly, someday it'll get the job done)
-# This is a general outline: please do not blindly copy/paste stuff into ur terminal. 
-##
+#  One-Tough-Cookie
+freshly installed macOS systems with slightly hardened defaults
+(Supposedly, someday it'll get the job done)
+This is a general outline: please do not blindly copy/paste stuff into ur terminal. 
 
 Constanty being rewritten; a continuous 'wip' to harden mac/osx.
 
-#  In an attempt to give credit where credit is dueeee >>> :
+In an attempt to give credit where credit is dueeee >>> :
 Actual credits, initial ideas and inspiration can be found throughout github
 more specifically on projects such as:
 
