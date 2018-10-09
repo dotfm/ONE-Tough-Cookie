@@ -1,0 +1,19 @@
+Host *
+# Protocol 2
+
+# AddKeysToAgent yes
+# UseKeychain no
+# IdentityFile ~/.ssh/id_ed25519
+# IdentitiesOnly yes
+# HashKnownHosts yes
+
+# StrictHostKeyChecking ask
+# ChallengeResponseAuthentication no
+
+# PasswordAuthentication no
+# KbdInteractiveAuthentication yes
+# ControlMaster auto
+# ControlPath ~/.ssh/ctrl/@r:%h:-p 
+# ControlPersist 1m
+
+# TCPKeepAlive yes
