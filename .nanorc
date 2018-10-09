@@ -1,0 +1,18 @@
+# set editor defaults pico-nano
+set morespace
+set tabsize 4
+#set constantshow
+#set softwrap
+#set boldtext
+set smooth
+#set titlecolor "green"
+#set numbercolor "green"
+#set statuscolor "red/white"
+#set functioncolor "blue,white"
+#set errorcolor "white,red"
+#set keycolor "green"
+# Extra set
+#set backupdir "~/.nanodir"
+#set linenumbers
+#set trimblanks
+#set unix
