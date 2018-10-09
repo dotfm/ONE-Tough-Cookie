@@ -1,0 +1,58 @@
+Quad9
+    9.9.9.9 Secure IPv4: Blocklist, DNSSEC, No EDNS Client-Subnet
+    9.9.9.10 Unsecure IPv4: No blocklist, no DNSSEC, send EDNS Client-Subnet
+    2620:fe::fe Secure IPv6: Blocklist, DNSSEC, No EDNS Client-Subnet
+    2620:fe::10 Unsecure IPv6: No blocklist, no DNSSEC, send EDNS Client-Subnet
+
+Freenom World
+  80.80.80.80
+  80.80.81.81
+    
+StrongDNS
+  216.131.65.63
+  216.131.65.60 
+  
+SecureDNS
+  DNSCrypt
+    146.185.167.43:5353
+    [2a03:b0c0:0:1010::e9a:3001]:5353 
+    
+  DNS over TLS
+    146.185.167.43:853 or [2a03:b0c0:0:1010::e9a:3001]:853
+Protocols: DNS over TCP/TLS and UDP/TLS
+
+2001:4860:4860::8888 	Google 	Worldwide (Anycast) 	Google Public DNS
+2001:4860:4860::8844 	Google 	Worldwide (Anycast) 	Google Public DNS
+2606:4700:4700::1111 	Cloudflare 	Worldwide (Anycast) 	1.1.1.1 Public DNS
+2606:4700:4700::1001 	Cloudflare 	Worldwide (Anycast) 	1.1.1.1 Public DNS
+2620:fe::10 	Quad9 	Worldwide (Anycast) 	Quad9 Unsecure DNS
+2620:74:1b::1:1 	Verisign 	United States 	Verisign Public DNS
+2620:74:1c::2:2 	Verisign 	United States 	Verisign Public DNS
+2610:a1:1018::5 	Neustar 	United States 	Neustar DNS Advantage
+2610:a1:1019::5 	Neustar 	United States 	Neustar DNS Advantage
+2001:470:bbf2:2::1 	Lightning Wire Labs 	United States 	Lightning Wire Labs Public DNS
+2001:1620:2078:137:: 	Xiala 	Switzerland 	Xiala Public DNS
+2001:67c:28a4:: 	censurfridns.dk 	Europe (Anycast) 	UncensoredDNS
+2a01:3a0:53:53:: 	censurfridns.dk 	Denmark 	UncensoredDNS
+
+Address 	Organization 	Location 	Service
+8.8.8.8 	Google 	Worldwide (Anycast) 	Google Public DNS
+8.8.4.4 	Google 	Worldwide (Anycast) 	Google Public DNS
+1.1.1.1 	Cloudflare 	Worldwide (Anycast) 	1.1.1.1 Public DNS
+1.0.0.1 	Cloudflare 	Worldwide (Anycast) 	1.1.1.1 Public DNS
+80.80.80.80 	Freenom 	Worldwide (Anycast) 	Freenom World Public DNS
+80.80.81.81 	Freenom 	Worldwide (Anycast) 	Freenom World Public DNS
+9.9.9.10 	Quad9 	Worldwide (Anycast) 	Quad9 Unsecure DNS
+149.112.112.10 	Quad9 	Worldwide (Anycast) 	Quad9 Unsecure DNS
+64.6.64.6 	Verisign 	United States 	Verisign Public DNS
+64.6.65.6 	Verisign 	United States 	Verisign Public DNS
+156.154.70.5 	Neustar 	United States 	Neustar DNS Advantage
+156.154.71.5 	Neustar 	United States 	Neustar DNS Advantage
+74.113.60.185 	Lightning Wire Labs 	United States 	Lightning Wire Labs Public DNS
+81.3.27.54 	Lightning Wire Labs 	Germany 	Lightning Wire Labs Public DNS
+194.150.168.168 	Chaos Computer Club 	Germany 	CCC Public DNS
+77.109.148.136 	Xiala 	Switzerland 	Xiala Public DNS
+77.109.148.137 	Xiala 	Switzerland 	Xiala Public DNS
+109.69.8.51 	puntCAT 	Spain 	puntCAT Public DNS
+91.239.100.100 	censurfridns.dk 	Europe (Anycast) 	UncensoredDNS
+89.233.43.71 	censurfridns.dk 	Denmark 	UncensoredDNS
