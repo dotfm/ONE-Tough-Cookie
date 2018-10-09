@@ -92,14 +92,14 @@ block drop quick on !lo0 proto udp from any to any port = 53
 dig @127.0.0.1 www.example.com
 # output should register NOERROR followed query flags
 ## check that base validation against publicdns resolvers is blocked
-dig @8.8.8.8 www.example.com
+# dig @8.8.8.8 www.example.com
 # connection output should register default timeout and unanswered query
 ##
 
 ##
 #		VII. GPG 
 ##
-brew instal gnupg2 pinentry-mac coreutils #haveged(entropy)
+# brew instal gnupg2 pinentry-mac coreutils #haveged(entropy)
 #	ykpam and yubico dyld
 #brew install yubico-pam ykpers (yubico-pam's default software license had been #expired since September 2017 >> please check the validity before proceeding.  
 
