@@ -1,5 +1,5 @@
 #  One-Tough-Cookie
-freshly installed macOS systems with slightly hardened defaults
+trying to dish out credit where credit is due
 (Supposedly, someday it'll get the job done)
 This is a general outline: please do not blindly copy/paste stuff into ur terminal. 
 
