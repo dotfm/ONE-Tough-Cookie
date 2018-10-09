@@ -1,0 +1,49 @@
+opkg update
+opkg install unbound odhcpd unbound-control
+opkg remove dnsmasq
+
+opkg install luci-app-unbound (alternate)
+
+
+ ( user appended )
+
+                /etc/unbound/unbound_ext.conf
+forward-zone:
+  name: "."
+  forward-addr: 1.1.1.1@853                   
+  forward-addr: 1.0.0.1@853                             
+  forward-addr: 2606:4700:4700::1111@853
+  forward-addr: 2606:4700:4700::1001@853
+  forward-ssl-upstream: yes   
+
+                /etc/config/unbound
+config unbound
+  option add_local_fqdn '1'
+  option add_wan_fqdn '1'
+  option dhcp_link 'odhcpd'
+  option dhcp4_slaac6 '1'
+  option domain 'lan'
+  option domain_type 'static'
+  option listen_port '53'
+  option rebind_protection '1'
+  option unbound_control '1'
+
+
+                /etc/config/dhcp
+
+config dhcp 'lan'
+        option dhcpv4 'server'
+        option dhcpv6 'server'
+        option interface 'lan'
+        option leasetime '12h'
+        option ra 'server'
+        option ra_management '1'
+
+config odhcpd 'odhcpd'
+        option maindhcp '1'
+        option leasefile '/var/lib/odhcpd/dhcp.leases'
+        option leasetrigger '/usr/lib/unbound/odhcpd.sh'
+...
+
+service unbound enable
+service unbound start
